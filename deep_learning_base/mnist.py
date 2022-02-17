@@ -67,7 +67,11 @@ def change_one_hot_label(x):
 
     return encoded
 
-def load_mnist(normalize=True, flatten=True, one_hot_label=True):
+def load_mnist(pickle_path=False, normalize=True, flatten=True, one_hot_label=True):
+    global save_file
+    if pickle_path:
+        save_file = pickle_path
+
     if not os.path.exists(save_file):
         init_mnist()
 
@@ -90,19 +94,18 @@ def load_mnist(normalize=True, flatten=True, one_hot_label=True):
     return (dataset['train_img'], dataset['train_label'], dataset['test_img'], dataset['test_label'])
 
 
-parser = argparse.ArgumentParser(description="Download mnist dataset")
-parser.add_argument("--save-path", type=str, help="path to save mnist dataset")
-args = parser.parse_args()
-
-save_path = args.save_path
-save_file = f"{save_path}/MNIST/mnist.pkl"
-base_url = "http://yann.lecun.com/exdb/mnist"
-file_names = {'train_img' : 'train-images-idx3-ubyte.gz',
-              'train_label' : 'train-labels-idx1-ubyte.gz',
-              'test_img' : 't10k-images-idx3-ubyte.gz',
-              'test_label' : 't10k-labels-idx1-ubyte.gz'}
-
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Download mnist dataset")
+    parser.add_argument("--save-path", type=str, help="path to save mnist dataset")
+    args = parser.parse_args()
+
+    save_path = args.save_path
+    save_file = f"{save_path}/MNIST/mnist.pkl"
+    base_url = "http://yann.lecun.com/exdb/mnist"
+    file_names = {'train_img' : 'train-images-idx3-ubyte.gz',
+                'train_label' : 'train-labels-idx1-ubyte.gz',
+                'test_img' : 't10k-images-idx3-ubyte.gz',
+                'test_label' : 't10k-labels-idx1-ubyte.gz'}
     init_mnist()
     train_images, train_labels, test_images, test_labels = load_mnist(flatten=False)
     print(train_images.shape, train_labels.shape)
