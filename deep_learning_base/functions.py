@@ -21,6 +21,14 @@ def softmax(x):
 def identity_func(x):
     return x
 
+def cross_entropy_error(y, t):
+    if y.ndim == 1:
+        t = t.reshape(1, t.size)
+        y = y.reshape(1, y.size)
+        
+    batch_size = y.shape[0]
+    return -np.sum(t * np.log(y + 1e-7)) / batch_size
+
 if __name__ == "__main__":
     test2 = np.array([0.3, 2.9, 4.0])
     print(softmax(test2))
