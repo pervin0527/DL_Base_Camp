@@ -32,9 +32,6 @@ def cross_entropy_error(y, t):
 def numerical_gradient(f, x):
     h = 1e-4
     grad = np.zeros_like(x)
-#     print(x.shape, grad.shape)
-    
-#     print(x.size)
     for idx in range(x.size):
         tmp_val = x[idx]
         
