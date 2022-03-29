@@ -9,7 +9,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 # print(x)
 
 x = tf.constant([[10.]]) # vector가 아니라 matrix 형태로 선언했음.
-print(x)
+print(x.shape, '\n', x)
 
 """
 아래 Dense layer에 대해 weight와 bias 값을 별도로 초기화 선언하지 않았는데,

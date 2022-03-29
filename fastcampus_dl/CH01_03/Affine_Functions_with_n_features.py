@@ -1,7 +1,10 @@
+import os
 import tensorflow as tf
 from tensorflow.keras.layers import Dense
 
-x = tf.random.uniform(shape=(1, 10), minval=0, maxval=10)
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = '3'
+
+x = tf.random.uniform(shape=(2, 10), minval=0, maxval=10)
 print(x.shape, '\n', x) # (1, 10) row vector 형태. 10개의 feature에 해당하는 값들이 vector에 들어 있음.
 
 dense = Dense(units=1)
