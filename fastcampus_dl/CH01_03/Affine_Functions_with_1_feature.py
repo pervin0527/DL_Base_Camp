@@ -5,11 +5,14 @@ from tensorflow.keras.layers import Dense
 
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
-# x = tf.constant([[10., 20.]]) # feature가 1개인 coulmn vector
-# print(x)
+sample = tf.constant([1, 2, 3, 4, 5], shape=5)
+print(sample.shape, sample)
+
+sample_x = tf.constant([[10., 20.]]) # 개념 설명 때 feature가 1개인 데이터들로 구성된 coulmn vector를 떠올리면 된다.
+print(sample_x.shape, sample_x) # (1, 2), [[10., 20.]]
 
 x = tf.constant([[10.]]) # vector가 아니라 matrix 형태로 선언했음.
-print(x.shape, '\n', x)
+print(x.shape, x) # (1, 1), [[10.]]
 
 """
 아래 Dense layer에 대해 weight와 bias 값을 별도로 초기화 선언하지 않았는데,
